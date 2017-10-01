@@ -5,7 +5,47 @@ import Hebcal from "hebcal";
 const initialString = "אברהם";
 const afterString = "לשנה הבאה בירושלים";
 const hc = new Hebcal();
-const ushpizinList = ["אברהם", "יצחק", "יעקב", "משה", "אהרן", "יוסף", "דוד"];
+
+//from https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+function getParameterByName(name, url) {
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return "";
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+const Avraham = "אברהם";
+const Yitzchak = "יצחק";
+const Yaakov = "יעקב";
+const Moshe = "משה";
+const Aharon = "אהרן";
+const Yosef = "יוסף";
+const David = "דוד";
+const KabbalisticOrder = [
+  Avraham,
+  Yitzchak,
+  Yaakov,
+  Moshe,
+  Aharon,
+  Yosef,
+  David
+];
+const ChronologicalOrder = [
+  Avraham,
+  Yitzchak,
+  Yaakov,
+  Yosef,
+  Moshe,
+  Aharon,
+  David
+];
+const ushpizinList = getParameterByName("order") === "chronological"
+  ? ChronologicalOrder
+  : KabbalisticOrder;
+
 let succosIsOrWas = false;
 
 function setHebcalLocation() {

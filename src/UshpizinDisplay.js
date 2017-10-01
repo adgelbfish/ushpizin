@@ -8,7 +8,7 @@ class UshpizinDisplay extends Component {
         <div className="UshpizinDisplay-MakabiYG-font UshpizinDisplay-guest">
           {this.props.currentGuest}
         </div>
-        do not rely on ushpizin change time for zman shkia
+        ushpizin switch time not to be relied upon for zman shkia
       </div>
     );
   }
