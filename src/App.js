@@ -38,8 +38,8 @@ const ChronologicalOrder = [
   Yitzchak,
   Yaakov,
   Yosef,
-  Moshe,
   Aharon,
+  Moshe,
   David
 ];
 const ushpizinList = getParameterByName("order") === "chronological"
