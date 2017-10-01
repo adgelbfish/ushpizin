@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import "./App.css";
 import UshpizinDisplay from "./UshpizinDisplay";
 import Hebcal from "hebcal";
-const placeholderString = "לשנה הבאה בירושלים";
+const initialString = "אברהם";
+const afterString = "לשנה הבאה בירושלים";
 const hc = new Hebcal();
 const ushpizinList = ["אברהם", "יצחק", "יעקב", "משה", "אהרן", "יוסף", "דוד"];
+let succosIsOrWas = false;
 
 function setHebcalLocation() {
   if (navigator.geolocation) {
@@ -20,7 +22,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentGuest: placeholderString
+      currentGuest: initialString
     };
   }
 
@@ -29,19 +31,21 @@ class App extends Component {
     let today = hc.find("today")[0];
     let succos = hc.find("succos");
     let index;
-    try {
-      index = succos.findIndex(day => {
-        return (
-          day.day === today.day &&
-          day.month === today.month &&
-          day.year === today.year
-        );
-      });
+
+    index = succos.findIndex(day => {
+      return (
+        day.day === today.day &&
+        day.month === today.month &&
+        day.year === today.year
+      );
+    });
+
+    if (index > 0 && index < 7) {
+      succosIsOrWas = true;
       guest = ushpizinList[index];
-    } catch (e) {
-      guest = placeholderString;
+    } else {
+      guest = succosIsOrWas ? afterString : initialString;
     }
-    guest = guest || placeholderString;
     return guest;
   }
 
