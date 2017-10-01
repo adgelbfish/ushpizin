@@ -24,7 +24,7 @@ const Moshe = "משה";
 const Aharon = "אהרן";
 const Yosef = "יוסף";
 const David = "דוד";
-const KabbalisticOrder = [
+const SfirosOrder = [
   Avraham,
   Yitzchak,
   Yaakov,
@@ -44,7 +44,7 @@ const ChronologicalOrder = [
 ];
 const ushpizinList = getParameterByName("order") === "chronological"
   ? ChronologicalOrder
-  : KabbalisticOrder;
+  : SfirosOrder;
 
 let succosIsOrWas = false;
 
