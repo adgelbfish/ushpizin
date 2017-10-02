@@ -10,7 +10,7 @@ const hc = new Hebcal();
 function getParameterByName(name, url) {
   if (!url) url = window.location.href;
   name = name.replace(/[\[\]]/g, "\\$&");
-  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+  let regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
     results = regex.exec(url);
   if (!results) return null;
   if (!results[2]) return "";
@@ -24,15 +24,7 @@ const Moshe = "משה";
 const Aharon = "אהרן";
 const Yosef = "יוסף";
 const David = "דוד";
-const SfirosOrder = [
-  Avraham,
-  Yitzchak,
-  Yaakov,
-  Moshe,
-  Aharon,
-  Yosef,
-  David
-];
+const SfirosOrder = [Avraham, Yitzchak, Yaakov, Moshe, Aharon, Yosef, David];
 const ChronologicalOrder = [
   Avraham,
   Yitzchak,
