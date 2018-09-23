@@ -2,9 +2,14 @@ import React, { Component } from "react";
 import "./App.css";
 import UshpizinDisplay from "./UshpizinDisplay";
 import Hebcal from "hebcal";
+import moment from "moment-timezone"
+import * as SunCalc from "suncalc";
 const initialString = "אברהם";
 const afterString = "לשנה הבאה בירושלים";
 const hc = new Hebcal();
+
+
+
 
 //from https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
 function getParameterByName(name, url) {
@@ -32,6 +37,7 @@ const ChronologicalOrder = [
   Yosef,
   Aharon,
   Moshe,
+  David,
   David
 ];
 const ushpizinList = getParameterByName("order") === "chronological"
@@ -39,11 +45,16 @@ const ushpizinList = getParameterByName("order") === "chronological"
   : SfirosOrder;
 
 let succosIsOrWas = false;
-
+let latitude = 0
+let longitude = 0
+let altitude = 0
 function setHebcalLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
-      hc.setLocation(position.coords.latitude, position.coords.longitude);
+      latitude = position.coords.latitude;
+      longitude = position.coords.longitude;
+      altitude = position.coords.altitude;
+      hc.setLocation(latitude, longitude);
     });
   }
 }
@@ -59,6 +70,7 @@ class App extends Component {
   }
 
   getCurrentGuest() {
+    let {sunset} = SunCalc.getTimes(/*Date*/ new Date(), /*Number*/ latitude, /*Number*/ longitude);
     let guest;
     let today = hc.find("today")[0];
     let succos = hc.find("succos");
@@ -74,7 +86,7 @@ class App extends Component {
 
     if (index > 0 && index < 7) {
       succosIsOrWas = true;
-      guest = ushpizinList[index];
+      guest = moment().isSameOrAfter(sunset) ? ushpizinList[index + 1]: ushpizinList[index];
     } else {
       guest = succosIsOrWas ? afterString : initialString;
     }

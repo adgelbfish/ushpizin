@@ -4,9 +4,12 @@
   "private": true,
   "dependencies": {
     "hebcal": "^2.2.5",
-    "moment": "^2.18.1",
+    "kosher-zmanim": "^0.2.4",
+    "moment": "^2.22.2",
+    "moment-timezone": "^0.5.21",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "suncalc": "^1.8.0"
   },
   "devDependencies": {
     "react-scripts": "1.0.14"
