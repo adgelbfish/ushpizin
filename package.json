@@ -6,7 +6,7 @@
     "hebcal": "^2.2.5",
     "kosher-zmanim": "^0.2.4",
     "moment": "^2.22.2",
-    "moment-timezone": "^0.5.21",
+    "moment-timezone": "^0.5.35",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "suncalc": "^1.8.0"
